@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;databaseName=Shop_DB;encrypt=false
+    username: sa
+    password: quocviet23@
+    hikari:
+      maximum-pool-size: 15
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+        show_sql: true
+        format_sql: true
+server:
+  port: 8080
+
+shop:
+  jwt:
+    expiration: 60000
+    secretKey: admin
