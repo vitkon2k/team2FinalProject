@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/admin")
-public class AdminApi {
+@RequestMapping("/api/product")
+public class ProductApi {
+
     @GetMapping
-    public String admin() {
-        return "admin/dashboard";
+    public String get() {
+        return "Return list of products";
     }
 }
