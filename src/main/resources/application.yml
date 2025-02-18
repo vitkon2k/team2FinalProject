@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost:1433;databaseName=Shop_DB;encrypt=false
+    url: jdbc:sqlserver://localhost:1433;databaseName=DB_Shop;encrypt=false
     username: sa
-    password: quocviet23@
+    password: 1234$
     hikari:
       maximum-pool-size: 15
   jpa:
