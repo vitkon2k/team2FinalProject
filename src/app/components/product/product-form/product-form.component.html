@@ -1,0 +1,32 @@
+<div>
+    <h2>{{ isEdit ? 'Sửa sản phẩm' : 'Thêm sản phẩm mới' }}</h2>
+    <form (ngSubmit)="saveProduct()">
+      <div>
+        <label for="name">Tên sản phẩm:</label>
+        <input type="text" id="name" [(ngModel)]="product.name" name="name" required>
+      </div>
+      <div>
+        <label for="description">Mô tả:</label>
+        <input type="text" id="description" [(ngModel)]="product.description" name="description">
+      </div>
+      <div>
+        <label for="price">Giá:</label>
+        <input type="number" id="price" [(ngModel)]="product.price" name="price" required step="0.01">
+      </div>
+      <div>
+        <label for="discount_price">Giá giảm:</label>
+        <input type="number" id="discount_price" [(ngModel)]="product.discount_price" name="discount_price" step="0.01">
+      </div>
+      <div>
+        <label for="stock">Số lượng tồn:</label>
+        <input type="number" id="stock" [(ngModel)]="product.stock" name="stock" required>
+      </div>
+      <div>
+        <label for="image_url">URL Hình ảnh:</label>
+        <input type="text" id="image_url" [(ngModel)]="product.image_url" name="image_url">
+      </div>
+      <br>
+      <button type="submit">{{ isEdit ? 'Cập nhật' : 'Tạo mới' }}</button>
+    </form>
+  </div>
+  
