@@ -31,13 +31,17 @@ public class JwtUtils {
                 .subject(username)
                 .issuedAt(new Date())
                 .expiration(new Date(new Date().getTime() + expiration))
-                .signWith(getSigningKey())
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
         return token;
     }
 
     private SecretKey getSigningKey() {
-        return Keys.hmacShaKeyFor(hashKey(secretKey).getBytes());
+        String hashed = hashKey(secretKey);
+        if (hashed == null) {
+            throw new IllegalStateException("Không thể tạo key ký từ secretKey");
+        }
+        return Keys.hmacShaKeyFor(hashed.getBytes(StandardCharsets.UTF_8));
     }
 
     private String hashKey(String input) {

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserAdapter implements UserDetails {
 
-    private UserEntity userEntity;
+    private final UserEntity userEntity;
 
     public UserAdapter(UserEntity userEntity) {
         this.userEntity = userEntity;
@@ -19,14 +19,11 @@ public class UserAdapter implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        if (userEntity.getRoles() != null) {
-            String[] roles = userEntity.getRoles().split(",");
-            for (String role : roles) {
-                authorities.add(new SimpleGrantedAuthority(role));
-            }
+        String role = userEntity.getRole().trim().toUpperCase();
+        if (!role.startsWith("ROLE_")) {
+            role = "ROLE_" + role;
         }
-        return authorities;
+        return List.of(new SimpleGrantedAuthority(role));
     }
 
     @Override
@@ -36,6 +33,22 @@ public class UserAdapter implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userEntity.getUsername();
+        return userEntity.getEmail();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() { return true; }
+
+    @Override
+    public boolean isAccountNonLocked() { return true; }
+
+    @Override
+    public boolean isCredentialsNonExpired() { return true; }
+
+    @Override
+    public boolean isEnabled() { return true; }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
     }
 }

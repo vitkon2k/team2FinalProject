@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    public UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity userEntity = userRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        UserEntity userEntity = userRepository.findByEmail(email);
         if (userEntity != null) {
             return new UserAdapter(userEntity);
         }
-        throw new UsernameNotFoundException("Username " + username + " not found");
+        throw new UsernameNotFoundException("Không tìm thấy người dùng với email: " + email);
     }
 }

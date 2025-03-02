@@ -1,26 +1,35 @@
 package com.web.finalproject.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
+
+import java.time.LocalDateTime;
+
 
 @Data
 @Entity
-@Table(name = "Users")
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "users")
 public class UserEntity {
     @Id
-    @UuidGenerator
-    @Column(name = "UserId")
-    private String id;
-    @Column(name = "Username")
-    private String username;
-    @Column(name = "Password")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "full_name")
+    private String fullName;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "password_hash")
     private String password;
-    @Column(name = "Roles")
-    private String roles;
-    @Column(name = "Status")
-    private String status;
+    @Column(name = "phone")
+    private String phone;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "role")
+    private String role;
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime created_at;
 }

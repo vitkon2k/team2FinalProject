@@ -1,5 +1,6 @@
 package com.web.finalproject.config;
 
+import com.web.finalproject.model.UserAdapter;
 import com.web.finalproject.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -28,11 +30,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            String token = parseJwtToken(request);
+            String jwtToken = parseJwtToken(request);
 
-            if (jwtUtils.validateToken(token)) {
-                String username = jwtUtils.getUsername(token);
-                UserDetails userDetails = userService.loadUserByUsername(username);
+            if (jwtUtils.validateToken(jwtToken) && jwtToken != null) {
+                String username = jwtUtils.getUsername(jwtToken);
+                UserAdapter userDetails = (UserAdapter) userService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -45,8 +47,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     private String parseJwtToken(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");
-        if (headerAuth != null && headerAuth.startsWith("Bearer ")) {
-            return headerAuth.substring(7);
+        if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+            String token = headerAuth.substring(7).trim();
+            if (!token.isEmpty()) {
+                return token;
+            }
         }
         return null;
     }

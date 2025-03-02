@@ -24,14 +24,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SpringSecurityConfig {
 
     @Autowired
-    private AuthEntryPointJwt authEntryPointJwt;
-    @Autowired
     private UserService userService;
+    @Autowired
+    private AuthEntryPointJwt authEntryPointJwt;
 
     @Bean
-    public JwtTokenFilter jwtTokenFilter() {
-        return new JwtTokenFilter();
-    }
+    public JwtTokenFilter jwtTokenFilter() { return new JwtTokenFilter(); }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -39,7 +37,7 @@ public class SpringSecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManagerBean(AuthenticationConfiguration authConfig) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
 
@@ -53,12 +51,12 @@ public class SpringSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf(AbstractHttpConfigurer::disable)
+        httpSecurity.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/token").permitAll()
-                        .requestMatchers("/admin/**").permitAll()
-                        .requestMatchers("/user/**").authenticated()
-                        .anyRequest().permitAll()
+                        .requestMatchers("/product/**   ").permitAll()
+                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+                        .anyRequest().authenticated()
                 )
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> {
                     httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
