@@ -37,11 +37,6 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepository.deleteById(id);
     }
 
-//    @Override
-//    public CategoryEntity findByName(String categoryName) {
-//
-//    }
-
     @Override
     public List<CategoryEntity> findAll() {
         return categoryRepository.findAll();

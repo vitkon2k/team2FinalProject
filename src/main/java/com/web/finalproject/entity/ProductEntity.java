@@ -37,4 +37,8 @@ public class ProductEntity {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
+
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private BrandEntity brand;
 }

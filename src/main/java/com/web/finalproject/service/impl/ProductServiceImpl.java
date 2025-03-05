@@ -27,6 +27,7 @@ public class ProductServiceImpl implements ProductService {
             ProductEntity productEntity1 = productRepository.getOne(product.getId());
             productEntity1.setName(product.getName());
             productEntity1.setDescription(product.getDescription());
+            productEntity1.setBrand(product.getBrand());
             productEntity1.setPrice(product.getPrice());
             productEntity1.setDiscountPrice(product.getDiscountPrice());
             productEntity1.setImageUrl(product.getImageUrl());
@@ -51,4 +52,14 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(id);
     }
 
+    @Override
+    public List<ProductEntity> getByBrand(Integer brandId) {
+        return productRepository.findByBrandId(brandId);
+    }
+
+    @Override
+    public List<ProductEntity> getByCategory(Integer categoryId) {
+        return productRepository.findByCategoryId(categoryId);
+    }
 }
+

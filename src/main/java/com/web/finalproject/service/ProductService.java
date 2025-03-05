@@ -11,4 +11,6 @@ public interface ProductService {
     void delete(Integer id);
     List<ProductEntity> findAll();
     Optional<ProductEntity> getById(Integer id);
+    List<ProductEntity> getByBrand(Integer brandId);
+    List<ProductEntity> getByCategory(Integer categoryId);
 }

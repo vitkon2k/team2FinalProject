@@ -9,7 +9,6 @@ public interface CategoryService {
     CategoryEntity create(CategoryEntity category);
     CategoryEntity update(Integer id, CategoryEntity category);
     void delete(Integer id);
-//    CategoryEntity findByName(String categoryName);
     Optional<CategoryEntity> findById(Integer id);
     List<CategoryEntity> findAll();
 }
