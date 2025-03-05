@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer {
+    background: #fff;
+    border-top: 5px solid red;
+    padding: 20px 0;
+    font-size: 14px;
+    color: #333;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    margin: auto;
+}
+
+.support-icons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.support-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.support-item i {
+    color: red;
+    font-size: 18px;
+}
+
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+
+.footer-column {
+    width: 20%;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: red;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 5px;
+}
+
+.footer-column ul li a {
+    color: #333;
+    text-decoration: none;
+}
+
+.footer-column ul li a:hover {
+    text-decoration: underline;
+}
+
+
+.company-info img {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+.company-info p {
+    margin: 5px 0;
+}
+
+.company-info a {
+    color: blue;
+}
+
+.fb-page {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.floating-hotline {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: orange;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.floating-hotline a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 10px 0;
+    background: red;
+    color: #fff;
+    font-size: 12px;
+    width: 100%;
+}

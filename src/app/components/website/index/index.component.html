@@ -1,0 +1,46 @@
+<base href="/">
+<div class="main-container">
+    <div class="left-grid">
+        <img src="assets/images/left1.png" alt="Ảnh trái 1" (click)="navigateTo('https://example.com/link1')">
+        <img src="assets/images/left2.png" alt="Ảnh trái 2" (click)="navigateTo('https://example.com/link2')">
+    </div>
+
+    <div class="carousel">
+        <img *ngFor="let slide of slides; let i = index" 
+             [src]="slide.image" 
+             [class.active]="i === currentIndex" 
+             [alt]="'Slide ' + (i + 1)"
+             (click)="navigateTo(slide.link)">
+
+        <div class="carousel-controls">
+            <button (click)="prevSlide()">&#10094;</button>
+            <button (click)="nextSlide()">&#10095;</button>
+        </div>
+    </div>
+
+    <div class="right-banner">
+        <img src="assets/images/right.jpg" alt="Banner quảng cáo" (click)="navigateTo('https://example.com/banner')">
+    </div>
+</div>
+
+<div class="product-section">
+    <h2 class="section-title">MÁY TÍNH BÀN</h2>
+    <app-product-list [category_id]="3"></app-product-list>
+</div>
+
+<div class="product-section">
+    <h2 class="section-title">LAPTOP VĂN PHÒNG</h2>
+    <app-product-list [category_id]="1"></app-product-list>
+</div>
+
+<div class="product-section">
+    <h2 class="section-title">LAPTOP GAMING</h2>
+    <app-product-list [category_id]="2"></app-product-list>
+</div>
+
+
+<div class="product-section">
+    <h2 class="section-title">PHỤ KIỆN</h2>
+    <app-product-list [category_id]="4"></app-product-list>
+</div>
+

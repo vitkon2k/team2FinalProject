@@ -1,0 +1,46 @@
+<div *ngIf="product" class="product-detail">
+    <div class="product-header">
+      <h1>{{ product.name }}</h1>
+    </div>
+  
+    <div class="product-content">
+      <div class="product-image">
+        <img [src]="product.imageUrl" [alt]="product.name">
+      </div>
+  
+
+      <div class="product-info">
+        <p class="brand-category"><strong>Thương hiệu:</strong> {{ product.brand }} | <strong>Danh mục:</strong> {{ product.category }}</p>
+  
+        <p class="price">
+          <span *ngIf="product.discount_price" class="old-price">{{ product.price | number }} đ</span>
+          <span class="new-price">{{ product.discountPrice || product.price | number }} đ</span>
+          <span *ngIf="product.discountPrice" class="discount">-{{ calculateDiscount(product.price, product.discountPrice) }}%</span>
+        </p>
+  
+        <button class="buy-now">Mua ngay</button>
+        <button class="add-to-cart">Thêm vào giỏ</button>
+  
+        <ul class="policy-list">
+          <li>✔ Bảo hành chính hãng 12 tháng</li>
+          <li>✔ Hỗ trợ đổi trả trong 7 ngày</li>
+          <li>✔ Giao hàng toàn quốc nhanh chóng</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="product-description">
+      <h2>Mô tả sản phẩm</h2>
+      <p>{{ product.description }}</p>
+    </div>
+  
+    <div class="promotion">
+      <h3>🎁 Ưu đãi đặc biệt</h3>
+      <ul>
+        <li>Tặng balo cao cấp trị giá 500K</li>
+        <li>Miễn phí cài đặt phần mềm trọn đời</li>
+        <li>Hỗ trợ kỹ thuật 24/7</li>
+      </ul>
+    </div>
+  </div>
+  

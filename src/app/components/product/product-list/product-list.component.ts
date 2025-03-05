@@ -1,36 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
-import { Product } from 'src/app/models/product.model';
+import { Component, Input, OnChanges } from '@angular/core';
+import { Product } from 'src/app/models/product-model/product.model';
+import { PagesService } from 'src/app/services/pages-service/pages.service';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
-  
+export class ProductListComponent implements OnChanges {
+  @Input() category_id: number | undefined;
   products: Product[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private pageService: PagesService) {}
 
-  loadProducts(): void {
-    this.productService.getProducts().subscribe(
-      data => this.products = data,
-      error => console.log(error)
+  ngOnChanges(): void {
+    if (this.category_id) {
+      this.loadProductsByCategory(this.category_id);
+    }
+  }
+
+  loadProductsByCategory(categoryId: number): void {
+    this.pageService.getProductsByCategoryId(categoryId).subscribe(
+      data => {
+        console.log("Dữ liệu API:", data);
+        this.products = data.map(product => ({
+          ...product,
+        }));
+      },
+      error => console.log('Lỗi API:', error)
     );
   }
-
-  ngOnInit(): void {
-    this.loadProducts();
-  }
-
-  deleteProduct(id: number): void {
-    if (confirm('Xác nhận xóa sản phẩm này?')){
-      this.productService.deleteProduct(id).subscribe(
-        () => this.loadProducts(),
-        error => console.log(error)
-      );
-    }
-  } 
+  
 }
-

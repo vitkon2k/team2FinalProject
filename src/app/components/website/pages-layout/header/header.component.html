@@ -1,0 +1,65 @@
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <a routerLink=""><img src="assets/images/logo.jpg" alt="Laptop LC"></a>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm sản phẩm ...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="hotline">
+            <div class="hotline-icon">
+                <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="hotline-text">
+                <p>Hotline kinh doanh</p>
+                <strong>0985.84.3366</strong>
+                <br>
+                <span>Hotline 2: 0838.29.6688</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="navbar">
+    <ul class="nav-menu">
+        <li class="dropdown">
+            <a class="dropdown-toggle">
+              <i class="fas fa-bars"></i> Danh mục sản phẩm <i class="fas fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li *ngFor="let categories of category">
+                <a [routerLink]="['/products/category', categories.id]">{{ categories.name }}</a>
+            </li>
+            </ul>
+          </li>
+          
+        <li class="nav-item">
+            <a [routerLink]="['/contact']" class="nav-link">
+                <i class="fas fa-phone"></i> Liên hệ
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="" class="nav-link">
+                <i class="fas fa-money-bill-wave"></i> Mua trả góp
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fas fa-tags"></i> Khuyến mãi
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="['/news']" class="nav-link">
+                <i class="fas fa-newspaper"></i> Tin tức
+            </a>
+        </li>
+        <li class="nav-item hot-deal">
+            <a href="#" class="nav-link">
+                <i class="fas fa-fire"></i> DEAL GIÁ SỐC
+            </a>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,12 @@
+.card:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+  }
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  .btn-outline-danger:hover {
+    background-color: red;
+    color: white;
+  }

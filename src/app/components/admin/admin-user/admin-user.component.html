@@ -1,0 +1,29 @@
+<div class="container mt-4">
+    <h2 class="mb-3">Quản lý Người dùng</h2>
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Họ và Tên</th>
+          <th>Email</th>
+          <th>Vai trò</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.fullName }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <span class="badge bg-primary" *ngIf="user.role === 'admin'">Admin</span>
+            <span class="badge bg-secondary" *ngIf="user.role === 'customer'">Khách hàng</span>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="user.id !== undefined && deleteUser(user.id)">Xóa</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

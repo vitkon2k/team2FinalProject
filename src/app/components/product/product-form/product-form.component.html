@@ -1,32 +1,57 @@
-<div>
-    <h2>{{ isEdit ? 'Sửa sản phẩm' : 'Thêm sản phẩm mới' }}</h2>
-    <form (ngSubmit)="saveProduct()">
-      <div>
-        <label for="name">Tên sản phẩm:</label>
-        <input type="text" id="name" [(ngModel)]="product.name" name="name" required>
+<div class="container mt-4">
+  <h2>{{ isEdit ? 'Chỉnh sửa sản phẩm' : 'Thêm sản phẩm mới' }}</h2>
+
+  <form (ngSubmit)="saveProduct()">
+    <div class="mb-3">
+      <label class="form-label">Tên sản phẩm</label>
+      <input type="text" class="form-control" [(ngModel)]="product.name" name="name" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Mô tả</label>
+      <textarea class="form-control" [(ngModel)]="product.description" name="description"></textarea>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Danh mục</label>
+        <select class="form-select" [(ngModel)]="product.categoryId" name="categoryId" required>
+          <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+        </select>
       </div>
-      <div>
-        <label for="description">Mô tả:</label>
-        <input type="text" id="description" [(ngModel)]="product.description" name="description">
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Hãng</label>
+        <select class="form-select" [(ngModel)]="product.brandId" name="brandId" required>
+          <option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</option>
+        </select>
       </div>
-      <div>
-        <label for="price">Giá:</label>
-        <input type="number" id="price" [(ngModel)]="product.price" name="price" required step="0.01">
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Giá</label>
+        <input type="number" class="form-control" [(ngModel)]="product.price" name="price" required>
       </div>
-      <div>
-        <label for="discount_price">Giá giảm:</label>
-        <input type="number" id="discount_price" [(ngModel)]="product.discount_price" name="discount_price" step="0.01">
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Giá khuyến mãi</label>
+        <input type="number" class="form-control" [(ngModel)]="product.discountPrice" name="discountPrice">
       </div>
-      <div>
-        <label for="stock">Số lượng tồn:</label>
-        <input type="number" id="stock" [(ngModel)]="product.stock" name="stock" required>
-      </div>
-      <div>
-        <label for="image_url">URL Hình ảnh:</label>
-        <input type="text" id="image_url" [(ngModel)]="product.image_url" name="image_url">
-      </div>
-      <br>
-      <button type="submit">{{ isEdit ? 'Cập nhật' : 'Tạo mới' }}</button>
-    </form>
-  </div>
-  
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Số lượng</label>
+      <input type="number" class="form-control" [(ngModel)]="product.stock" name="stock" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Hình ảnh</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)">
+      <img *ngIf="product.imageUrl" [src]="product.imageUrl" class="img-thumbnail mt-2" style="max-width: 200px;">
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ isEdit ? 'Cập nhật' : 'Thêm mới' }}</button>
+    <a routerLink="/admin/products" class="btn btn-secondary ms-2">Hủy</a>
+  </form>
+</div>

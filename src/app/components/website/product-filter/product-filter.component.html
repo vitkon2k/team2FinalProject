@@ -1,0 +1,31 @@
+<div class="style-0">
+    <div class="style-1">
+        <div class="style-2">
+            <h1 class="style-3"><b class="style-4"></b><span class="style-5">{{ categoryName }}</span><b class="style-6"></b></h1>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="product-list">
+        <app-product-list [category_id]="category_id"></app-product-list>
+    </div>
+
+    <div class="filter-container">
+        <div class="filter-group">
+            <h3 class="filter-title">Khoảng Giá</h3>
+            <label *ngFor="let range of priceRanges">
+                <input type="radio" name="price" (change)="filterByPrice(range)" />
+                {{ range.label }}
+            </label>
+        </div>
+
+        <div class="filter-group">
+            <h3 class="filter-title">Hãng sản xuất</h3>
+            <label *ngFor="let brand of brands">
+                <input type="radio" name="brand" (change)="filterByBrand(brand.id)" />
+                {{ brand.name }}
+            </label>
+        </div>
+    </div>
+</div>

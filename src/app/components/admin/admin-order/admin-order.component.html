@@ -1,0 +1,41 @@
+<div class="container mt-4">
+    <div class="card shadow p-4">
+      <h2 class="mb-3 text-center text-primary">Quản lý Đơn hàng</h2>
+      
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered align-middle">
+          <thead class="table-dark text-center">
+            <tr>
+              <th>ID</th>
+              <th>Khách hàng</th>
+              <th>Tổng tiền</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders">
+              <td class="text-center">{{ order.id }}</td>
+              <td>{{ order.userId.fullName }}</td>
+              <td class="text-end">{{ order.totalPrice | currency:'VND' }}</td>
+              <td class="text-center">
+                <span class="badge bg-warning" *ngIf="order.order_status === 'pending'">Chờ xử lý</span>
+                <span class="badge bg-success" *ngIf="order.order_status === 'shipped'">Đã giao</span>
+                <span class="badge bg-danger" *ngIf="order.order_status === 'canceled'">Đã hủy</span>
+              </td>
+              <td class="text-center">
+                <button class="btn btn-outline-primary btn-sm me-2" (click)="viewOrder(order.id)">Xem</button>
+                <button 
+                  class="btn btn-outline-danger btn-sm" 
+                  [disabled]="order.order_status === 'shipped'" 
+                  (click)="cancelOrder(order.id)">
+                  Hủy
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
