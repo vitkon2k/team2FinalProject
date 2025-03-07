@@ -17,6 +17,7 @@ import { NewsListComponent } from './components/website/news/news-list/news-list
 import { NewsDetailComponent } from './components/website/news/news-detail/news-detail.component';
 import { ContactComponent } from './components/website/contact/contact/contact.component';
 import { InstallmentComponent } from './components/website/installment/installment.component';
+import { CheckoutComponent } from './components/website/checkout/checkout.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
       { path: 'news', component: NewsListComponent },
       { path: 'news/:id', component: NewsDetailComponent},
       { path: 'contact', component: ContactComponent },
-      { path: 'installment', component: InstallmentComponent}
+      { path: 'installment', component: InstallmentComponent },
+      { path: 'checkout', component: CheckoutComponent }
     ]
   },
 

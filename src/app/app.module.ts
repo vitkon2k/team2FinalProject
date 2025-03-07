@@ -31,6 +31,7 @@ import { NewsDetailComponent } from './components/website/news/news-detail/news-
 import { ContactComponent } from './components/website/contact/contact/contact.component';
 import { PromotionComponent } from './components/website/promotion/promotion.component';
 import { InstallmentComponent } from './components/website/installment/installment.component';
+import { CheckoutComponent } from './components/website/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { InstallmentComponent } from './components/website/installment/installme
     ContactComponent,
     PromotionComponent,
     InstallmentComponent,
+    CheckoutComponent,
   ],
   imports: [
     CommonModule,

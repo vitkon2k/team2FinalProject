@@ -18,7 +18,7 @@
           <span *ngIf="product.discountPrice" class="discount">-{{ calculateDiscount(product.price, product.discountPrice) }}%</span>
         </p>
   
-        <button class="buy-now">Mua ngay</button>
+        <button class="buy-now" [routerLink]="['checkout']" >Mua ngay</button>
         <button class="add-to-cart">Thêm vào giỏ</button>
   
         <ul class="policy-list">
